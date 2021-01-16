@@ -1,0 +1,29 @@
+name: update fna-libs
+on:
+  [push]
+
+jobs:
+  update-fnalibs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: download fnalibs
+      run: curl http://fna.flibitijibibo.com/archive/fnalibs.tar.bz2 -o fnalibs
+
+    - name: extract fnalibs
+      run: |
+        tar xvfj fnalibs --overwrite
+        rm fnalibs
+
+    - name: checkin if changed
+      run: |
+        CHANGES=`git status --porcelain=v1 2>/dev/null | wc -l`
+        if [ $CHANGES -ne 0 ]; then
+            git config user.name deccer
+            git config user.email decccer@outlook.com
+            git add .
+            git commit -m "Update fnalibs"
+            git push
+        fi
