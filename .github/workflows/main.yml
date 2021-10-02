@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: download fnalibs
-      run: curl http://fna.flibitijibibo.com/archive/fnalibs.tar.bz2 -o fnalibs
+      run: curl https://fna.flibitijibibo.com/archive/fnalibs.tar.bz2 -o fnalibs
 
     - name: extract fnalibs
       run: |
