@@ -23,6 +23,8 @@ jobs:
         CHANGES=`git status --porcelain=v1 2>/dev/null | wc -l`
         echo $CHANGES files have changed
         if [ $CHANGES -ne 0 ]; then
+            git config user.name deccer
+            git config user.email decccer@outlook.com
             git add .
             git commit -m "Update fnalibs"
             git push
